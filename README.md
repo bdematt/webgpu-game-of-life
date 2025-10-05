@@ -23,30 +23,11 @@ Follow the installation instructions for the [Required Tools](#required-tools) m
 # In the project directory
 npm install
 ```
-## NPM Scripts
 
-### Development Server
+### 3. Run Dev Server
 ```bash
 # Start development server with auto-reload
 npm run watch
-```
-
-### Manual Serving
-```bash
-# Just serve the built files (without watching)
-npm run serve
-```
-
-### Manual Serving
-```bash
-# Delete dist and build (required if updating shader code, which isn't watched)
-npm run clean
-```
-
-### Release Build
-```bash
-# Build for release instead of debug
-npm run build:release
 ```
 
 ## Project Structure
