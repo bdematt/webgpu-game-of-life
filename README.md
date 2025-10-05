@@ -4,7 +4,7 @@ A C++ / WebGPU / Emscripten implementation of [Conway's Game of Life](https://en
 Rendering and cell state computations are done by the GPU using WebGPU
 
 ## Demo
-[View Live Demo](https://www.google.com)
+[View Live Demo](https://bdematt.github.io/webgpu-game-of-life/)
 
 ## Required Tools
 1. [Node.js](https://nodejs.org/en/download)
