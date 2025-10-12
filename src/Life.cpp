@@ -1,8 +1,9 @@
 #include "Life.h"
-#include "webgpu.hpp"
+#include <webgpu/webgpu_cpp.h>
 #include "Shader.h"
 #include <random>
 #include <emscripten/html5.h>
+#include <iostream>
 
 Life::Life()
     : cellStateArray(GRID_SIZE * GRID_SIZE)
@@ -27,10 +28,24 @@ Life::~Life()
 
 void Life::requestAdapter()
 {
-    wgpu::RequestAdapterOptions adapterOptions {};
-    adapterOptions.setDefault();
-    adapter = instance.requestAdapter(adapterOptions);
-    if (!adapter) throw Life::InitializationError("Failed to request adapter");
+    wgpu::Future f1 = instance.RequestAdapter(
+        nullptr,                           // options (can pass &adapterOptions)
+        wgpu::CallbackMode::WaitAnyOnly,  // callback mode
+        [this](wgpu::RequestAdapterStatus status, wgpu::Adapter a, wgpu::StringView message) {
+            if (status != wgpu::RequestAdapterStatus::Success) {
+                std::cerr << "RequestAdapter failed: " << message << "\n";
+                std::exit(1);
+            }
+            adapter = std::move(a);
+        }
+    );
+    
+    // Wait for the future to complete
+    instance.WaitAny(f1, UINT64_MAX);
+    
+    if (!adapter) {
+        throw Life::InitializationError("Failed to request adapter");
+    }
 }
 
 void Life::requestDevice()

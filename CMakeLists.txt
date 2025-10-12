@@ -26,9 +26,14 @@ set_target_properties(index PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/dist
 )
 
+# Emscripten compile options
+target_compile_options(index PRIVATE
+    --use-port=emdawnwebgpu
+)
+
 # Emscripten link options
 target_link_options(index PRIVATE
-    -sUSE_WEBGPU=1
+    --use-port=emdawnwebgpu
     -sASYNCIFY=1                   # Required for async WebGPU operations
     -sEXPORTED_FUNCTIONS=['_main'] # Export main function
     -sEXPORTED_RUNTIME_METHODS=['ccall','cwrap']

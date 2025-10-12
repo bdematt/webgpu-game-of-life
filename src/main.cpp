@@ -1,6 +1,5 @@
-#define WEBGPU_CPP_IMPLEMENTATION
-#include "webgpu.hpp"
 #include "Life.h"
+#include <webgpu/webgpu_cpp.h>
 
 static constexpr int FPS = 0;
 static constexpr bool SIMULATE_INFINITE_LOOP = true;

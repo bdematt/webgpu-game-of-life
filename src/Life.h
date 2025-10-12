@@ -1,6 +1,6 @@
 #pragma once
 #include <cstdint>
-#include "webgpu.hpp"
+#include <webgpu/webgpu_cpp.h>
 #include <chrono>
 
 class Life

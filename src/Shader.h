@@ -1,6 +1,5 @@
 #pragma once
-
-#include "webgpu.hpp"
+#include <webgpu/webgpu_cpp.h>
 #include <string>
 
 class Shader {
